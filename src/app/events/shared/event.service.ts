@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class EventService {
     getEvents() {
-        return EVENTS;
+      let subject = new Subject();
+      setTimeout(() => { subject.next(EVENTS); subject.complete(); }, 100);
+        return subject;
     }
 
     getEvent(id: number) {
@@ -118,16 +121,6 @@ export class EventService {
           id: 2,
           name: 'Angular 4 and Firebase',
           presenter: 'David East',
-          duration: 3,
-          level: 'Intermediate',
-          abstract: `In this workshop, David East will show you how to use Angular with the new
-          ultra-real-time 5D Firebase back end, hosting platform, and wine recommendation engine.`,
-          voters: ['bradgreen', 'igorminar', 'johnpapa']
-        },
-        {
-          id: 3,
-          name: 'Reading the Angular 4 Source',
-          presenter: 'Patrick Stapleton',
           duration: 2,
           level: 'Intermediate',
           abstract: `Angular 4's source code may be over 25 million lines of code, but it's really
