@@ -10,10 +10,11 @@ import { EventService } from './events/shared/event.service';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './route';
-import { CreateEventComponent } from './events/shared/create-event.component';
+import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './errors/404.component';
 import { EventRouteActivator } from './events/event-details/event-route-activator.service';
 import { EventListResolver } from './events/event-list-resolver.service';
+import { AuthService } from './user/auth.service';
 
 @NgModule({
     imports: [
@@ -34,7 +35,8 @@ import { EventListResolver } from './events/event-list-resolver.service';
                 EventRouteActivator,
                 {provide: 'CanDeactivateCreateEvent',
                 useValue: checkDirtyState},
-                EventListResolver],
+                EventListResolver,
+            AuthService],
   bootstrap: [EventsAppComponent]
 })
 export class AppModule {}
